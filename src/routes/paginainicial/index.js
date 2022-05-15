@@ -20,9 +20,11 @@ export default function PaginaInicial() {
                 <TopBar>
                     <TopSection>
                         <Title>sapatin</Title>
+                        <Link to="/login">
                         <Login>
                             Entrar
                         </Login>
+                        </Link>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow> 
