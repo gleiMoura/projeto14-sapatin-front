@@ -6,7 +6,11 @@ const Container = styled.div`
 	background-color: darkgray;
     position: absolute;
     top: 0;
-    left: 0;	
+    left: 0;
+    a{
+        text-decoration: none;
+        color: #000;
+    }	
 `;
 
 const Body = styled.div`

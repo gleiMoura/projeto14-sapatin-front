@@ -9,39 +9,45 @@ import inverno from '../../assets/inverno.png';
 import adidas from '../../assets/adidas.png';
 import colcci from '../../assets/colcci.png';
 import nike from '../../assets/nike.png';
+import dataContext from "../../context/dataContext";
 
 export default function PaginaInicial() {
+    const { data } = useContext(dataContext);
 
-
-
-    return(
+    return (
         <Container>
             <Body>
                 <TopBar>
                     <TopSection>
-                        <Title>sapatin</Title>
+                        <Title><Link to={"/"}>sapatin</Link></Title>
                         <Login>
-                            Entrar
+                            {(data.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
                         </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
-                        </DownArrow> 
+                        </DownArrow>
                         <Bag>
                             <ion-icon name="bag-outline"></ion-icon>
-                        </Bag>               
+                        </Bag>
                     </TopSection>
                     <Categories>
-                            <Category>
+                        <Category>
+                            <Link to={"/category/masculino"}>
                                 MASCULINO
-                            </Category>
-                            <Category>
+                            </Link>
+                        </Category>
+                        <Category>
+                            <Link to={"/category/feminino"}>
                                 FEMININO
-                            </Category>
-                            <Category>
+                            </Link>
+                        </Category>
+                        <Category>
+                            <Link to={"/category/infantil"}>
                                 INFANTIL
-                            </Category>
-                    </Categories> 
-                </TopBar>  
+                            </Link>
+                        </Category>
+                    </Categories>
+                </TopBar>
                 <BodyContent>
                     <SeparationBar />
                     <Ilustrations>
