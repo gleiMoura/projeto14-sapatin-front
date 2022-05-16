@@ -28,9 +28,6 @@ export default function LogIn({ setData }) {
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
-                        <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
-                        </Bag>
                     </TopSection>
                     <Categories>
                         <Category>
@@ -71,7 +68,7 @@ export default function LogIn({ setData }) {
                                     });
                                     requestion.then(answer => {
                                         setData(answer.data);
-                                        navigate("/bag")
+                                        navigate("/")
                                     })
                                     requestion.catch(err => {
                                         alert("dados inválidos!", err.data);
@@ -173,7 +170,7 @@ background-color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #A328D6;
+        background-color: #000;
         border: 1px solid rgb(140, 17, 190);
     }
 `

@@ -13,7 +13,12 @@ import dataContext from "../../context/dataContext";
 
 export default function PaginaInicial() {
     const { data } = useContext(dataContext);
+    const array = [];
+    if (data.token) {
+        array.push(data);
+    }
 
+    console.log(`array:`, array, "data", data, data.token)
     return (
         <Container>
             <Body>
@@ -21,13 +26,13 @@ export default function PaginaInicial() {
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
                         <Login>
-                            {(data.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
+                            {(array.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
                         </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
                         <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
+                            <Link to={"/bag"}><ion-icon name="bag-outline"></ion-icon></Link>
                         </Bag>
                     </TopSection>
                     <Categories>

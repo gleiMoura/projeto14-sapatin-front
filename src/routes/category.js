@@ -14,7 +14,21 @@ export default function SpecificCategory() {
     const navigate = useNavigate();
     const { idCategory } = useParams();
     const [products, setProducts] = useState([]);
+    const [select, setSelect] = useState('40')
     const { data } = useContext(dataContext);
+
+    const token = data.token;
+    const array = [];
+    if (data.token) {
+        array.push(data);
+    }
+
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
 
     useEffect(() => {
         const requestion = axios.get(`http://localhost:5000/produtos/${idCategory}`);
@@ -36,13 +50,13 @@ export default function SpecificCategory() {
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
                         <Login>
-                            {(data.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
+                            {(array.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
                         </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
                         <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
+                            <Link to={"/bag"}><ion-icon name="bag-outline"></ion-icon></Link>
                         </Bag>
                     </TopSection>
                     <Categories>
@@ -72,11 +86,32 @@ export default function SpecificCategory() {
                                     <img src={element.image} alt="produto" />
                                     <p>{element.name}</p>
                                     <p>Preço: {parseFloat(element.price).toFixed(2)}</p>
+                                    <div className='size'>
+                                        <p>Tamanho: </p>
+                                        <select onChange={e => setSelect(e.target.value)}>
+                                            <option value="40">40</option>
+                                            <option value="39">39</option>
+                                            <option value="38">38</option>
+                                            <option value="37">37</option>
+                                            <option value="36">36</option>
+                                            <option value="35">35</option>
+                                            <option value="34">34</option>
+                                        </select>
+                                    </div>
                                     <button onClick={() => {
-                                        if (data.length > 0) {
-
+                                        if (array.length > 0) {
+                                            console.log({ name: element.name, size: select })
+                                            const requestion = axios.post("http://localhost:5000/bag", { name: element.name, size: select }, config);
+                                            requestion.then(answer => {
+                                                console.log(answer.data);
+                                                alert("Produto adicionado à sacola!")
+                                            })
+                                            requestion.catch(err => {
+                                                console.error(err.data);
+                                            })
                                         } else {
-                                            navigate("/login")
+                                            navigate("/login");
+                                            alert("Faça login para aproveitar o site!!!")
                                         }
                                     }}>Colocar na Sacola</button>
                                 </div>
@@ -101,29 +136,32 @@ const Products = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
+margin: 50px 0;
     .product{
         width: 200px;
-        height: 300px;
+        height: 350px;
         background-color: white;
         padding: 8px;
         flex-direction: column;
         margin: 20px;
         padding-bottom: 30px;
-    }
+    };
     .product p{
         font-family: 'Roboto';
         font-size: 16px;
         color: #000;
-    }
-    .information{
+    };
+    .size{
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        margin: 20px 0;
+    };
+    .size p{
+        margin-right: 20px;
     }
     img{
         width: 150px;
         height: 200px;
-    }
+    };
     button{
         width: 150px;
         height: 20px;
@@ -131,5 +169,5 @@ justify-content: center;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
-    }
+    };
 `

@@ -8,14 +8,16 @@ import { ThreeDots } from 'react-loader-spinner';
 import styled from 'styled-components';
 import axios from "axios";
 
-export default function Register() {
+export default function EndShopp() {
     const navigate = useNavigate();
 
     // inputs states
+    const [street, setStreet] = useState("");
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [secondPassword, setSecondPassword] = useState("");
+    const [cep, setCep] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+
 
     //State to show the button loading
     const [loadbutton, setLoadButton] = useState(true);
@@ -26,15 +28,6 @@ export default function Register() {
                 <TopBar>
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
-                        <Login>
-                            Entrar
-                        </Login>
-                        <DownArrow>
-                            <ion-icon name="chevron-down-outline"></ion-icon>
-                        </DownArrow>
-                        <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
-                        </Bag>
                     </TopSection>
                     <Categories>
                         <Category>
@@ -58,31 +51,31 @@ export default function Register() {
                     <SeparationBar />
                     <Registerstyle>
                         <input type="text" id="name" placeholder='nome' required onChange={(e) => setName(e.target.value)} />
-                        <input type="email" id='email' placeholder='email' required onChange={(e) => setEmail(e.target.value)} />
-                        <input type="password" id="password" placeholder='senha (6 dígitos)' required onChange={(e) => setPassword(e.target.value)} />
-                        <input type="password" id="secondPassword" placeholder='senha (6 dígitos)' required onChange={(e) => setSecondPassword(e.target.value)} />
+                        <input type="text" id='cep' placeholder='cep' required onChange={(e) => setCep(e.target.value)} />
+                        <input type="text" id='street' placeholder='Rua' required onChange={(e) => setStreet(e.target.value)} />
+                        <input type="text" id="city" placeholder='cidade' required onChange={(e) => setCity(e.target.value)} />
+                        <input type="text" id="state" placeholder='Estado' required onChange={(e) => setState(e.target.value)} />
 
                         <button className={loadbutton ? "" : "hide"} onClick={() => {
-                            if (!name || !email || !password || !secondPassword) {
+                            if (!name || !cep || !street || !city || !state) {
                                 alert("Preecha todos os campos!");
-                                navigate("/register")
-                            } else if (password !== secondPassword) {
-                                alert("As duas senhas devem ser iguais!");
-                                navigate("/register")
+                                navigate("/endShopp")
                             } else {
                                 setLoadButton(false)
-                                const requestion = axios.post("http://localhost:5000/register", {
-                                    name: name,
-                                    email: email,
-                                    password: password
+                                const requestion = axios.post("http://localhost:5000/end", {
+                                    name,
+                                    cep,
+                                    street,
+                                    city,
+                                    state
                                 });
                                 requestion.then(answer => {
                                     console.log(answer.data);
-                                    alert("Usuário criado com sucesso!")
-                                    navigate("/login");
+                                    alert("enviado!")
+                                    navigate("/");
                                 })
                                 requestion.catch(err => {
-                                    alert("dados inválidos!", err.data);
+                                    alert("Problema ao enviar, tente novamente mais tarde (depois que o dev fizer o back de recebimento desses dados)!", err.data);
                                     console.error(err.data);
                                     setLoadButton(true);
                                     navigate("/register");
@@ -98,20 +91,9 @@ export default function Register() {
                                 ariaLabel='loading'
                             />
                         </button>
-
-                        <p>
-                            <Link to="/login">
-                                Já tem conta? Entre agora!
-                            </Link>
-                        </p>
                     </Registerstyle>
                     <SeparationBar />
                     <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
-                    <BrandLogos>
-                        <BrandLogo src={adidas} />
-                        <BrandLogo src={colcci} />
-                        <BrandLogo src={nike} />
-                    </BrandLogos>
                     <Infos>By Gleison Moura e Gabriel Hoelzle, Driven 2022</Infos>
                 </BodyContent>
             </Body>

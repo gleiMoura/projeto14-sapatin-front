@@ -5,11 +5,12 @@ import SpecificCategory from './routes/category';
 import ProductsBag from './routes/bag';
 import LogIn from './routes/login';
 import Register from './routes/register';
+import EndShop from './routes/endShopp';
 import dataContext from './context/dataContext';
 import {useState} from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   return (
     <dataContext.Provider value={{ data, setData }}>
       <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LogIn setData={setData} />} />
           <Route path="/category/:idCategory" element={<SpecificCategory />} />
           <Route path="/bag" element={<ProductsBag />} />
+          <Route path="/endShopp" element={<EndShop />} />
         </Routes>
       </BrowserRouter>
     </dataContext.Provider>

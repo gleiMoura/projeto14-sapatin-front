@@ -1,30 +1,40 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
 import adidas from '../assets/adidas.png';
 import colcci from '../assets/colcci.png';
 import nike from '../assets/nike.png';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import styled from 'styled-components';
 import axios from "axios";
 import dataContext from "../context/dataContext";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ProductsBag() {
-    const { idCategory } = useParams();
-    const [products, setProducts] = useState([]);
     const { data } = useContext(dataContext);
+    const [bagProducts, setBagProducts] = useState([]);
+    const navigate = useNavigate();
+    let productsNumber = 0;
+    let total = 0;
+    const array = [];
+    if (data) {
+        array.push(data);
+    }
 
     useEffect(() => {
-        const requestion = axios.get(`http://localhost:5000/produtos/${idCategory}`);
+        const requestion = axios.get(`http://localhost:5000/bag`, { email: data.email });
 
         requestion.then(answer => {
-            setProducts(answer.data);
+            setBagProducts(answer.data);
             console.log(answer.data);
         })
 
         requestion.catch(err => {
             console.error(err.data);
         })
-    }, [idCategory]);
+    }, []);
+
+    console.log(data.email)
 
     return (
         <Container>
@@ -32,15 +42,9 @@ export default function ProductsBag() {
                 <TopBar>
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
-                        <Login>
-                            {(data.length > 0) ? <Link to={"/login"}>"Entrar"</Link> : data.name}
-                        </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
-                        <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
-                        </Bag>
                     </TopSection>
                     <Categories>
                         <Category>
@@ -63,18 +67,27 @@ export default function ProductsBag() {
                 <BodyContent>
                     <SeparationBar />
                     <Products>
-                        {products.map(element => {
-                            return (
-                                <div className="product">
-                                    <img src={element.image} alt="produto" />
-                                    <p>{element.name}</p>
-                                    <p>Preço: {parseFloat(element.price).toFixed(2)}</p>
-                                    <button onClick={() => {
-
-                                    }}>Colocar na Sacola</button>
-                                </div>
-                            )
+                        {bagProducts.map(element => {
+                            if (data.email === element.email) {
+                                productsNumber++;
+                                if (parseFloat(element.price).toFixed(2) !== NaN) {
+                                    total += parseFloat(element.price)
+                                }
+                                return (
+                                    <div className="product">
+                                        <div class="image">
+                                            <img src={element.image} alt="produto" />
+                                            <p>{element.name}</p>
+                                            <p>tamanho: {element.size}</p>
+                                        </div>
+                                        <p>Preço: {parseFloat(element.price).toFixed(2)}</p>
+                                        <p>Data do pedido: {element.date}</p>
+                                    </div>
+                                )
+                            }
                         })}
+                        {productsNumber === 0 ? <p className='productP'>Você não fez nenhuma compra no site ainda!</p> : <button className='ProductButton' onClick={() => { navigate("/endShopp"); }}>Finalizar Compras</button>}
+                        {productsNumber === 0 ? "" : <p> valor das compras: {total.toFixed(2)}</p>}
                     </Products>
                     <SeparationBar />
                     <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
@@ -86,36 +99,65 @@ export default function ProductsBag() {
                     <Infos>By Gleison Moura e Gabriel Hoelzle, Driven 2022</Infos>
                 </BodyContent>
             </Body>
-        </Container>
+        </Container >
     )
 }
 
 const Products = styled.div`
 display: flex;
-flex-wrap: wrap;
+flex-direction: column;
 justify-content: center;
+align-items: center;
     .product{
         width: 200px;
         height: 300px;
         background-color: white;
-        padding: 8px;
-        flex-direction: column;
-        margin: 20px;
-        padding-bottom: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 50px 0;
     }
     .product p{
         font-family: 'Roboto';
         font-size: 16px;
         color: #000;
+        margin: 0 20px;
     }
     .information{
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
+    .productP{
+        width: 400px;
+        height: 50px;
+        margin: 100px 0;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+    .image{
+        width: 200px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        border: 1px #000 solid;
+        padding: 5px;
+    }
+    .image p{
+        margin-top: 20px;
+        width: 90px;
+        text-align: center;
+    }
     img{
         width: 150px;
         height: 200px;
+        margin: 0 20px;
     }
     button{
         width: 150px;
@@ -124,5 +166,6 @@ justify-content: center;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
+        margin: 50px
     }
 `
