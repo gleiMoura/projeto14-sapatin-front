@@ -1,7 +1,4 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
-import adidas from '../assets/adidas.png';
-import colcci from '../assets/colcci.png';
-import nike from '../assets/nike.png';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Categories, Category, Infos } from '../../src/routes/paginainicial/styles.js';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ThreeDots } from 'react-loader-spinner';
@@ -75,13 +72,13 @@ export default function EndShopp() {
                                     navigate("/");
                                 })
                                 requestion.catch(err => {
-                                    alert("Problema ao enviar, tente novamente mais tarde (depois que o dev fizer o back de recebimento desses dados)!", err.data);
+                                    alert("Problema ao enviar, tente novamente mais tarde!", err.data);
                                     console.error(err.data);
                                     setLoadButton(true);
                                     navigate("/register");
                                 })
                             }
-                        }}>Cadastrar</button>
+                        }}>Enviar Dados</button>
 
                         <button className={loadbutton ? "hide" : "loading"}>
                             <ThreeDots
@@ -93,7 +90,6 @@ export default function EndShopp() {
                         </button>
                     </Registerstyle>
                     <SeparationBar />
-                    <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
                     <Infos>By Gleison Moura e Gabriel Hoelzle, Driven 2022</Infos>
                 </BodyContent>
             </Body>
@@ -128,29 +124,29 @@ background-color: #fff;
         padding: 10px;
         text-align: left;
         margin-bottom: 13px;
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-size: 20px;
         border-radius: 5px;
         color: #000;
     }
     input:placeholder-shown{
-        font-family: 'Raleway';
+        font-family: 'Roboto';
     }
     button{
         width: 326px;
-        height: 46px;
+        height: 58px;
         background-color: #000;
         border-radius: 5px;
         margin-bottom: 25px;
         cursor: pointer;
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-weight: 700;
         font-size: 20px;
         color: white;
         border: none;
     }
     p{
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-size: 14px;
         color: #000;
         cursor: pointer;

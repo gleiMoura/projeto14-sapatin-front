@@ -1,4 +1,4 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
 import adidas from '../assets/adidas.png';
 import colcci from '../assets/colcci.png';
 import nike from '../assets/nike.png';
@@ -26,15 +26,9 @@ export default function Register() {
                 <TopBar>
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
-                        <Login>
-                            Entrar
-                        </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
-                        <Bag>
-                            <ion-icon name="bag-outline"></ion-icon>
-                        </Bag>
                     </TopSection>
                     <Categories>
                         <Category>

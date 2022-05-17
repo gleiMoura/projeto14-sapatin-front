@@ -1,4 +1,4 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
+import { Container, Body, TopBar, BodyContent, Login, SeparationBar, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
 import adidas from '../assets/adidas.png';
 import colcci from '../assets/colcci.png';
 import nike from '../assets/nike.png';
@@ -41,10 +41,13 @@ export default function ProductsBag() {
             <Body>
                 <TopBar>
                     <TopSection>
-                        <Title><Link to={"/"}>sapatin</Link></Title>
+                        <Title><Link to={"/"}>sapatin</Link></Title> 
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </DownArrow>
+                        <Login>
+                            {(array.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
+                        </Login>
                     </TopSection>
                     <Categories>
                         <Category>
@@ -87,7 +90,7 @@ export default function ProductsBag() {
                             }
                         })}
                         {productsNumber === 0 ? <p className='productP'>Você não fez nenhuma compra no site ainda!</p> : <button className='ProductButton' onClick={() => { navigate("/endShopp"); }}>Finalizar Compras</button>}
-                        {productsNumber === 0 ? "" : <p> valor das compras: {total.toFixed(2)}</p>}
+                        {productsNumber === 0 ? "" : <p className='productTotal'> valor das compras: {total.toFixed(2)}</p>}
                     </Products>
                     <SeparationBar />
                     <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
@@ -160,12 +163,16 @@ align-items: center;
         margin: 0 20px;
     }
     button{
-        width: 150px;
-        height: 20px;
+        width: 220px;
+        height: 50px;
         background-color: #000;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
         margin: 50px
+    }
+    .productTotal{
+        font-size: 20px;
+        color: #000;
     }
 `
