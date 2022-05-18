@@ -121,9 +121,15 @@ export default function SpecificCategory() {
                     <SeparationBar />
                     <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
                     <BrandLogos>
-                        <BrandLogo src={adidas} />
-                        <BrandLogo src={colcci} />
-                        <BrandLogo src={nike} />
+                        <Link to={"/category/adidas"}>
+                            <BrandLogo src={adidas} />
+                        </Link>
+                        <Link to={"/category/vans"}>
+                            <BrandLogo src={colcci} />
+                        </Link>
+                        <Link to={"/category/nike"}>
+                            <BrandLogo src={nike} />
+                        </Link>
                     </BrandLogos>
                     <Infos>By Gleison Moura e Gabriel Hoelzle, Driven 2022</Infos>
                 </BodyContent>
