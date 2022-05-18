@@ -96,6 +96,7 @@ const Bag = styled.div`
     text-align: center;
     margin-left: 50px;
     margin-top: 3px;
+    cursor: pointer;
 `;
 
 const Categories = styled.div`

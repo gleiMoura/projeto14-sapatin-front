@@ -8,7 +8,7 @@ import axios from "axios";
 export default function EndShopp() {
     const navigate = useNavigate();
 
-    // inputs states
+    // inputs states to finish shopp
     const [street, setStreet] = useState("");
     const [name, setName] = useState("");
     const [cep, setCep] = useState("");

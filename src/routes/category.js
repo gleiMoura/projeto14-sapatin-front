@@ -50,7 +50,7 @@ export default function SpecificCategory() {
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
                         <Login>
-                            {(array.length > 0) ? data.name : <Link to={"/login"}>Entrar</Link>}
+                            {(array.length > 0) ? <Link to="/profile">{data.name}</Link> : <Link to={"/login"}>Entrar</Link>}
                         </Login>
                         <DownArrow>
                             <ion-icon name="chevron-down-outline"></ion-icon>

@@ -6,6 +6,7 @@ import ProductsBag from './routes/bag';
 import LogIn from './routes/login';
 import Register from './routes/register';
 import EndShop from './routes/endShopp';
+import ProfileContent from "./routes/profile"
 import dataContext from './context/dataContext';
 import {useState} from "react";
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/category/:idCategory" element={<SpecificCategory />} />
           <Route path="/bag" element={<ProductsBag />} />
           <Route path="/endShopp" element={<EndShop />} />
+          <Route path="/profile" element={<ProfileContent />}></Route>
         </Routes>
       </BrowserRouter>
     </dataContext.Provider>
