@@ -1,13 +1,13 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PaginaInicial from './routes/paginainicial';
-import SpecificCategory from './routes/category';
-import ProductsBag from './routes/bag';
-import LogIn from './routes/login';
-import Register from './routes/register';
-import EndShop from './routes/endShopp';
-import ProfileContent from "./routes/profile"
-import dataContext from './context/dataContext';
+import PaginaInicial from './routes/paginainicial/index';
+import SpecificCategory from './routes/paginas/category';
+import ProductsBag from './routes/paginas/bag';
+import LogIn from './routes/paginas/login';
+import Register from './routes/paginas/register';
+import EndShop from './routes/paginas/endShopp';
+import ProfileContent from "./routes/paginas/profile"
+import dataContext from './context/dataContext.js';
 import {useState} from "react";
 
 function App() {

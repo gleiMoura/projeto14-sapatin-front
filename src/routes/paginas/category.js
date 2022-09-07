@@ -1,12 +1,12 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
-import adidas from '../assets/adidas.png';
-import colcci from '../assets/colcci.png';
-import nike from '../assets/nike.png';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../paginainicial/styles';
+import adidas from '../../assets/adidas.png';
+import colcci from '../../assets/colcci.png';
+import nike from '../../assets/nike.png';
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import styled from 'styled-components';
 import axios from "axios";
-import dataContext from "../context/dataContext";
+import dataContext from "../../context/dataContext";
 import { useNavigate } from 'react-router-dom';
 
 

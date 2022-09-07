@@ -1,21 +1,20 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
-import adidas from '../assets/adidas.png';
-import colcci from '../assets/colcci.png';
-import nike from '../assets/nike.png';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, Categories, Category, Infos } from '../paginainicial/styles';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ThreeDots } from 'react-loader-spinner';
 import styled from 'styled-components';
 import axios from "axios";
 
-export default function Register() {
+export default function EndShopp() {
     const navigate = useNavigate();
 
-    // inputs states
+    // inputs states to finish shopp
+    const [street, setStreet] = useState("");
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [secondPassword, setSecondPassword] = useState("");
+    const [cep, setCep] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+
 
     //State to show the button loading
     const [loadbutton, setLoadButton] = useState(true);
@@ -26,9 +25,6 @@ export default function Register() {
                 <TopBar>
                     <TopSection>
                         <Title><Link to={"/"}>sapatin</Link></Title>
-                        <DownArrow>
-                            <ion-icon name="chevron-down-outline"></ion-icon>
-                        </DownArrow>
                     </TopSection>
                     <Categories>
                         <Category>
@@ -52,37 +48,37 @@ export default function Register() {
                     <SeparationBar />
                     <Registerstyle>
                         <input type="text" id="name" placeholder='nome' required onChange={(e) => setName(e.target.value)} />
-                        <input type="email" id='email' placeholder='email' required onChange={(e) => setEmail(e.target.value)} />
-                        <input type="password" id="password" placeholder='senha (6 dígitos)' required onChange={(e) => setPassword(e.target.value)} />
-                        <input type="password" id="secondPassword" placeholder='senha (6 dígitos)' required onChange={(e) => setSecondPassword(e.target.value)} />
+                        <input type="text" id='cep' placeholder='cep' required onChange={(e) => setCep(e.target.value)} />
+                        <input type="text" id='street' placeholder='Rua' required onChange={(e) => setStreet(e.target.value)} />
+                        <input type="text" id="city" placeholder='cidade' required onChange={(e) => setCity(e.target.value)} />
+                        <input type="text" id="state" placeholder='Estado' required onChange={(e) => setState(e.target.value)} />
 
                         <button className={loadbutton ? "" : "hide"} onClick={() => {
-                            if (!name || !email || !password || !secondPassword) {
+                            if (!name || !cep || !street || !city || !state) {
                                 alert("Preecha todos os campos!");
-                                navigate("/register")
-                            } else if (password !== secondPassword) {
-                                alert("As duas senhas devem ser iguais!");
-                                navigate("/register")
+                                navigate("/endShopp")
                             } else {
                                 setLoadButton(false)
-                                const requestion = axios.post("http://localhost:5000/register", {
-                                    name: name,
-                                    email: email,
-                                    password: password
+                                const requestion = axios.post("http://localhost:5000/end", {
+                                    name,
+                                    cep,
+                                    street,
+                                    city,
+                                    state
                                 });
                                 requestion.then(answer => {
                                     console.log(answer.data);
-                                    alert("Usuário criado com sucesso!")
-                                    navigate("/login");
+                                    alert("enviado!")
+                                    navigate("/");
                                 })
                                 requestion.catch(err => {
-                                    alert("dados inválidos!", err.data);
+                                    alert("Problema ao enviar, tente novamente mais tarde!", err.data);
                                     console.error(err.data);
                                     setLoadButton(true);
                                     navigate("/register");
                                 })
                             }
-                        }}>Cadastrar</button>
+                        }}>Enviar Dados</button>
 
                         <button className={loadbutton ? "hide" : "loading"}>
                             <ThreeDots
@@ -92,20 +88,8 @@ export default function Register() {
                                 ariaLabel='loading'
                             />
                         </button>
-
-                        <p>
-                            <Link to="/login">
-                                Já tem conta? Entre agora!
-                            </Link>
-                        </p>
                     </Registerstyle>
                     <SeparationBar />
-                    <BrandTitle>GRANDES MARCAS, PEQUENOS PREÇOS</BrandTitle>
-                    <BrandLogos>
-                        <BrandLogo src={adidas} />
-                        <BrandLogo src={colcci} />
-                        <BrandLogo src={nike} />
-                    </BrandLogos>
                     <Infos>By Gleison Moura e Gabriel Hoelzle, Driven 2022</Infos>
                 </BodyContent>
             </Body>
@@ -140,29 +124,29 @@ background-color: #fff;
         padding: 10px;
         text-align: left;
         margin-bottom: 13px;
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-size: 20px;
         border-radius: 5px;
         color: #000;
     }
     input:placeholder-shown{
-        font-family: 'Raleway';
+        font-family: 'Roboto';
     }
     button{
         width: 326px;
-        height: 46px;
+        height: 58px;
         background-color: #000;
         border-radius: 5px;
         margin-bottom: 25px;
         cursor: pointer;
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-weight: 700;
         font-size: 20px;
         color: white;
         border: none;
     }
     p{
-        font-family: 'Raleway';
+        font-family: 'Roboto';
         font-size: 14px;
         color: #000;
         cursor: pointer;

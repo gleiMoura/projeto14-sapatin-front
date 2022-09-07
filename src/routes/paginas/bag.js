@@ -1,9 +1,9 @@
-import { Container, Body, TopBar, BodyContent, Login, SeparationBar, Bag, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
-import adidas from '../assets/adidas.png';
-import colcci from '../assets/colcci.png';
-import dataContext from '../context/dataContext.js';
+import { Container, Body, TopBar, BodyContent, Login, SeparationBar, Bag, TopSection, Title, DownArrow, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../paginainicial/styles';
+import adidas from '../../assets/adidas.png';
+import colcci from '../../assets/colcci.png';
+import dataContext from '../../context/dataContext';
 import dayjs from "dayjs";
-import nike from '../assets/nike.png';
+import nike from '../../assets/nike.png';
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import styled from 'styled-components';

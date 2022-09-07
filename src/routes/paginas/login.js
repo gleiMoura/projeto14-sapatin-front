@@ -1,9 +1,9 @@
-import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../../src/routes/paginainicial/styles.js';
-import adidas from '../assets/adidas.png';
-import colcci from '../assets/colcci.png';
-import nike from '../assets/nike.png';
+import { Container, Body, TopBar, BodyContent, SeparationBar, TopSection, Title, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from '../paginainicial/styles';
+import adidas from '../../assets/adidas.png';
+import colcci from '../../assets/colcci.png';
+import nike from '../../assets/nike.png';
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import styled from 'styled-components';
 import axios from "axios";
 import { ThreeDots } from 'react-loader-spinner';
