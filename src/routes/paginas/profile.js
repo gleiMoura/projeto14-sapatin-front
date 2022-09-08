@@ -23,7 +23,7 @@ export default function ProfileContent() {
     }
 
     useEffect(() => {
-        const requestion = axios.get(`http://localhost:5000/profile`, { email: data.email });
+        const requestion = axios.get(`https://sapatin.onrender.com/profile`, { email: data.email });
 
         requestion.then(answer => {
             setProfileProducts(answer.data);

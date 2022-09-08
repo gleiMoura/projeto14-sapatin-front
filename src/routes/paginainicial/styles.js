@@ -2,31 +2,31 @@ import styled from 'styled-components';
 
 const Container = styled.div`
 	width: 100%;
-    height: 100%;
+  height: 100%;
 	background-color: darkgray;
-    position: absolute;
-    top: 0;
-    left: 0;
-    a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  a{
         text-decoration: none;
         color: #000;
-    }	
+  }	
 `;
 
 const Body = styled.div`
-    width: 600px;
+    width: 90%;
     height: 100%;
     overflow: scroll;
-	bottom: 0;
-	margin: auto;
-	left: 0;
-	right: 0;
+		bottom: 0;
+		margin: auto;
+		left: 0;
+		right: 0;
     background-color: white;
 `;
 
 const TopBar = styled.div`
     position: fixed;
-    width: 600px;
+    width: 90%;
     height: 150px;
     background-color: white;
 `;
@@ -37,7 +37,7 @@ const BodyContent = styled.div`
 `;
 
 const SeparationBar = styled.div`
-    width: 598px;
+    width: 100%;
     height: 50px;
     background-color: #A58775;
     border: 1px solid black;
@@ -47,6 +47,8 @@ const Ilustrations = styled.div`
     width: 100%;
     height: 400px;
     display: flex;
+		justify-content: center;
+		align-items: center;
 `;
 
 const Inverno = styled.img`
@@ -62,9 +64,9 @@ const IlustClothes = styled.img`
 const TopSection = styled.div`
     position: relative;
     height: 98px;
-    width: 598px;
+    width: 100%;
     border: 1px solid lightgrey; 
-    display: flex;  
+    display: flex;
 `;
 
 const Title = styled.div`
@@ -75,11 +77,14 @@ const Title = styled.div`
 `;
 
 const Login = styled.div`
-    font-size: 15px;
+    font-size: 18px;
     line-height: 98px;
     text-align: center;
     margin-left: 200px;
     margin-right: 5px;
+		position: absolute;
+		top: 10px;
+		right: 100px;
 `;
 
 const DownArrow = styled.div`
@@ -97,11 +102,14 @@ const Bag = styled.div`
     margin-left: 50px;
     margin-top: 3px;
     cursor: pointer;
+		position: absolute;
+		right: 40px;
+		top: 10px;
 `;
 
 const Categories = styled.div`
     position: relative;
-    width: 600px;
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -116,7 +124,7 @@ const Category = styled.div`
 `;
 
 const BrandTitle = styled.div`
-    width: 550px;
+    width: 90%;
     margin-left: 50px;
     height: 50px;
     line-height: 50px;
@@ -126,7 +134,7 @@ const BrandTitle = styled.div`
 
 const BrandLogos = styled.div`
     margin-top: 20px;
-    width: 600px;
+    width: 100%;
     height: 200px;
     display: flex;
     justify-content: space-evenly;

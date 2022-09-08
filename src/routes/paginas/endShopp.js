@@ -59,7 +59,7 @@ export default function EndShopp() {
                                 navigate("/endShopp")
                             } else {
                                 setLoadButton(false)
-                                const requestion = axios.post("http://localhost:5000/end", {
+                                const requestion = axios.post("https://sapatin.onrender.com/end", {
                                     name,
                                     cep,
                                     street,

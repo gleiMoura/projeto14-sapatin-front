@@ -7,7 +7,7 @@ import LogIn from './routes/paginas/login';
 import Register from './routes/paginas/register';
 import EndShop from './routes/paginas/endShopp';
 import ProfileContent from "./routes/paginas/profile"
-import dataContext from './context/dataContext.js';
+import dataContext from './context/dataContext';
 import {useState} from "react";
 
 function App() {

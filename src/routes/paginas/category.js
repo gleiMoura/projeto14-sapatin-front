@@ -31,7 +31,7 @@ export default function SpecificCategory() {
     };
 
     useEffect(() => {
-        const requestion = axios.get(`http://localhost:5000/produtos/${idCategory}`);
+        const requestion = axios.get(`https://sapatin.onrender.com/produtos/${idCategory}`);
 
         requestion.then(answer => {
             setProducts(answer.data);
@@ -101,7 +101,7 @@ export default function SpecificCategory() {
                                     <button onClick={() => {
                                         if (array.length > 0) {
                                             console.log({ name: element.name, size: select })
-                                            const requestion = axios.post("http://localhost:5000/bag", { name: element.name, size: select }, config);
+                                            const requestion = axios.post("https://sapatin.onrender.com/bag", { name: element.name, size: select }, config);
                                             requestion.then(answer => {
                                                 console.log(answer.data);
                                                 alert("Produto adicionado à sacola!")
@@ -139,17 +139,17 @@ export default function SpecificCategory() {
 }
 
 const Products = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-margin: 50px 0;
+display: grid;
+grid-template-columns: 300px 300px;
+justify-content: space-around;
+margin: 50px 20%;
     .product{
         width: 200px;
         height: 350px;
         background-color: white;
         padding: 8px;
         flex-direction: column;
-        margin: 20px;
+        margin: 50px;
         padding-bottom: 30px;
     };
     .product p{

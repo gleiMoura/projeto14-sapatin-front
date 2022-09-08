@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import './styles.js';
 import { Container, Body, TopBar, BodyContent, SeparationBar, Ilustrations, Inverno, IlustClothes, TopSection, Title, Login, DownArrow, Bag, Categories, Category, BrandTitle, BrandLogos, BrandLogo, Infos } from './styles.js';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import ilustracao1 from '../../assets/ilustracao1.png';
 import inverno from '../../assets/inverno.png';
 import adidas from '../../assets/adidas.png';
@@ -28,9 +26,6 @@ export default function PaginaInicial() {
                         <Login>
                             {(array.length > 0) ? <Link to="/profile">{data.name}</Link> : <Link to={"/login"}>Entrar</Link>}
                         </Login>
-                        <DownArrow>
-                            <ion-icon name="chevron-down-outline"></ion-icon>
-                        </DownArrow>
                         <Bag>
                             <Link to={"/bag"}><ion-icon name="bag-outline"></ion-icon></Link>
                         </Bag>

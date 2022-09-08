@@ -33,7 +33,7 @@ export default function ProductsBag() {
     }
 
     useEffect(() => {
-        const requestion = axios.get(`http://localhost:5000/bag`, { email: data.email });
+        const requestion = axios.get(`https://sapatin.onrender.com/bag`, { email: data.email });
 
         requestion.then(answer => {
             setBagProducts(answer.data);
@@ -117,7 +117,7 @@ export default function ProductsBag() {
                                 }
                             })}
                             {productsNumber === 0 ? <p className='productP'>Sacola Vazia!</p> : <button className='ProductButton' onClick={() => {
-                                const requestion = axios.post("http://localhost:5000/profile", {
+                                const requestion = axios.post("https://sapatin.onrender.com/profile", {
                                     email: data.email,
                                     data: profileProducts,
                                     total: total,
@@ -152,7 +152,7 @@ export default function ProductsBag() {
                                     navigate("/endShopp")
                                 } else {
                                     setLoadButton(false)
-                                    axios.post("http://localhost:5000/end", {
+                                    axios.post("https://sapatin.onrender.com/end", {
                                         name,
                                         cep,
                                         street,
@@ -169,7 +169,7 @@ export default function ProductsBag() {
                                         navigate("/register");
                                     })
 
-                                    axios.delete("http://localhost:5000/bag", profileProducts).then(answer => {
+                                    axios.delete("https://sapatin.onrender.com/bag", profileProducts).then(answer => {
                                         console.log(answer.data);
                                     }).catch(err => {
                                         console.error(err.data);

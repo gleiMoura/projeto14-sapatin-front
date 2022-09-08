@@ -65,7 +65,7 @@ export default function Register() {
                                 navigate("/register")
                             } else {
                                 setLoadButton(false)
-                                const requestion = axios.post("http://localhost:5000/register", {
+                                const requestion = axios.post("https://sapatin.onrender.com/register", {
                                     name: name,
                                     email: email,
                                     password: password
